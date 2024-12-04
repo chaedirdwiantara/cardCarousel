@@ -1,4 +1,4 @@
-import Slider from '@/components/Slider';
+import SliderMain from '@/components/Slider/Slider';
 import dummyData from '@/data/dummyData';
 import React from 'react';
 import { View, StyleSheet } from 'react-native';
@@ -7,7 +7,7 @@ export default function TabLayout() {
 
   return (
     <View style={styles.container}>
-      <Slider data={dummyData} />
+      <SliderMain data={dummyData} />
     </View>
   );
 }
