@@ -123,7 +123,7 @@ const ImageCard = ({
     );
   };
 
-const ExpandedView = ({
+  const ExpandedView = ({
     item,
     onClose,
     xPositions,
@@ -139,16 +139,31 @@ const ExpandedView = ({
     cardHeight: number;
   }) => {
     const animatedValue = useRef(new Animated.Value(0)).current;
-    const [imagePosition, setImagePosition] = useState({ x: xPositions, y: yPositions, width: cardWidth, height: cardHeight });
+  
+    const [imagePosition, setImagePosition] = useState({
+      x: xPositions,
+      y: yPositions,
+      width: cardWidth,
+      height: cardHeight,
+    });
   
     // Animate the expansion effect
     React.useEffect(() => {
-      Animated.timing(animatedValue, {
+      Animated.spring(animatedValue, {
         toValue: 1,
-        duration: 200,
+        friction: 10,
+        tension: 100,
         useNativeDriver: false,
       }).start();
-    }, [animatedValue]);
+    }, []);
+  
+    const handleClose = () => {
+      Animated.timing(animatedValue, {
+        toValue: 0.5,
+        duration: 100,
+        useNativeDriver: false,
+      }).start(() => onClose());
+    };
   
     const translateX = animatedValue.interpolate({
       inputRange: [0, 1],
@@ -177,16 +192,26 @@ const ExpandedView = ({
           { opacity, transform: [{ translateX }, { translateY }, { scale }] },
         ]}>
         <View style={styles.closeButtonContainer}>
-          <TouchableOpacity onPress={onClose} style={styles.closeButton}>
+          <TouchableOpacity onPress={handleClose} style={styles.closeButton}>
             <Text style={styles.closeButtonText}>X</Text>
           </TouchableOpacity>
         </View>
-        <Image source={{ uri: item.image }} style={styles.expandedImage} />
-        <View style={{ height: 20 }} />
-        <Text style={styles.expandedText}>{item.text}</Text>
+        <Animated.Image
+          source={{ uri: item.image }}
+          style={[
+            styles.expandedImage,
+            {
+              transform: [
+                { translateX },
+                { translateY },
+                { scale },
+              ],
+            },
+          ]}
+        />
       </Animated.View>
     );
-  };
+  };  
   
 const styles = StyleSheet.create({
   container: { flexDirection: 'row', alignItems: 'center' },
