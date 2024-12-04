@@ -1,3 +1,5 @@
+Horizontal Carousel
+![Screenshot 2024-12-04 at 20 31 17](https://github.com/user-attachments/assets/1f12789e-ef5a-4c74-a668-1e4f495dd8ee)
 
-![Screenshot 2024-12-04 at 20 08 55](https:/![Screenshot 2024-12-04 at 20 31 17](https://github.com/user-attachments/assets/63049d2f-e01f-455d-9a66-bc652fefc770)
-/github.com/user-attachments/assets/788af428-fe33-424a-a37a-588a0684b953)
+Expanded image
+![Screenshot 2024-12-04 at 20 32 54](https://github.com/user-attachments/assets/6a811fe0-20e1-45c3-9264-604aca55f837)
